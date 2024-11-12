@@ -4,6 +4,7 @@ import { Grocery } from '../../../models/grocery.model';
 import { CommonModule } from '@angular/common';
 import { Store } from '@ngrx/store';
 import { addToBucket, removeFromBucket } from '../../store/actions/bucket.actions';
+import { selectGroceries, selectGroceriesByType } from '../../store/selectors/grocery.selector';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class GroceryComponent {
   groceries$?:Observable<Grocery[]>;
 
   constructor(private store:Store<{groceries:Grocery[]}>){
-    this.groceries$ = store.select("groceries")
+    this.groceries$ = store.select(selectGroceriesByType("snacks"));
+
 }
 
 
