@@ -17,16 +17,19 @@ import { selectGroceries, selectGroceriesByType } from '../../store/selectors/gr
 export class GroceryComponent {
 
   groceries$?:Observable<Grocery[]>;
+  filteredgroceries$?:Observable<Grocery[]>;
 
   constructor(private store:Store<{groceries:Grocery[]}>){
-    this.groceries$ = store.select(selectGroceriesByType("snacks"));
-
+    this.groceries$ = store.select(selectGroceries);
 }
 
 
 
   onTypeChange(event: Event){
-
+    const selectedType = (event.target as HTMLSelectElement).value
+    if(selectedType)this.filteredgroceries$ = this.store.select(selectGroceriesByType(selectedType))
+      else this.filteredgroceries$ = undefined   
+    
   }
 
 
