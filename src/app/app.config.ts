@@ -7,6 +7,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools'
 import { provideEffects } from '@ngrx/effects'
 import { groceryReducer } from './store/reducers/grocery.reducer';
 import { bucketReducer } from './store/reducers/bucket.reducer';
+import { GroceryEffects } from './store/effects/grocery.effect';
 
 
 export const appConfig: ApplicationConfig = {
@@ -18,7 +19,7 @@ export const appConfig: ApplicationConfig = {
       groceries:groceryReducer,
       myBucket:bucketReducer
     }),
-    provideEffects([]),
+    provideEffects(GroceryEffects),
     provideStoreDevtools({
       maxAge: 5, // Retains last 5 states
       logOnly: !isDevMode(), // Restrict extension to log-only mode
